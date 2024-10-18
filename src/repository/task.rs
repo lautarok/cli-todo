@@ -17,22 +17,24 @@ impl TaskRepository {
 		
 		for line in reader.lines() {
 			let line = line.unwrap();
-			let mut tmp_task = Task{
-				id: 0,
-				title: String::new(),
-				description: String::new()
-			};
-			let data: Vec<&str> = line.split("$$").collect();
-			for (i, section) in data.iter().enumerate() {
-				if i == 0 {
-					tmp_task.id = section.parse::<u16>().unwrap();
-				} else if i == 1 {
-					tmp_task.title = section.to_string();
-				} else if i == 2 {
-					tmp_task.description = section.to_string();
+			if line != "" {
+				let mut tmp_task = Task{
+					id: 0,
+					title: String::new(),
+					description: String::new()
+				};
+				let data: Vec<&str> = line.split("$$").collect();
+				for (i, section) in data.iter().enumerate() {
+					if i == 0 {
+						tmp_task.id = section.parse::<u16>().unwrap();
+					} else if i == 1 {
+						tmp_task.title = section.to_string();
+					} else if i == 2 {
+						tmp_task.description = section.to_string();
+					}
 				}
+				list.push(tmp_task);
 			}
-			list.push(tmp_task);
 		}
 
 		TaskRepository{list}
