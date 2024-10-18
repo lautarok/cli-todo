@@ -61,7 +61,6 @@ impl TaskRepository {
 			let data: Vec<&str> = line.split("$$").collect();
 			if data[0] != id.to_string() {
 				if i != 1 {
-					println!("{}", i);
 					file_str += "\n";
 				}
 				file_str += &line;
@@ -78,7 +77,6 @@ impl TaskRepository {
 		let mut max_id = 1;
 
 		for task in self.list.iter() {
-			println!("{}", task.id);
 			if task.id >= max_id {
 				max_id = task.id + 1;
 			}
